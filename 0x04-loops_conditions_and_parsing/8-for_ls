@@ -4,10 +4,6 @@
 # N'affiche pas les fichiers cachés.
 
 list=$(ls)
-
-for file in list; do
-    if [[ ! "$file" == .* ]]; then
-         echo "$file" | cut -d '-' -f2
-    fi
+for i in $list; do
+  echo "$i" | cut -d '-' -f2
 done
-
