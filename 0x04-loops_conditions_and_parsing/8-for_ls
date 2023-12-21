@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Affiche le contenu du répertoire courant en format de liste.
+# Montre uniquement la partie du nom après le premier tiret.
+# N'affiche pas les fichiers cachés.
+
+list=$(ls)
+
+for file in list; do
+    if [[ ! "$file" == .* ]]; then
+        if [[ $file == *-* ]]; then
+            part_after_dash=$(echo "$file" | cut -d '-' -f2)
+            echo "$part_after_dash"
+        else
+            echo "$file"
+        fi
+    fi
+done
+
