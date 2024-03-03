@@ -1,55 +1,42 @@
-#!/bin/bash
-
-# Met à jour les paquets disponibles
+#!/usr/bin/env bash
+# Installs, configures, and starts the web server
 apt-get update
-
-# Installe Nginx
 apt-get -y install nginx
-
-# Autorise le trafic HTTP à travers le pare-feu UFW
 ufw allow 'Nginx HTTP'
-
-# Crée les répertoires pour le site web et les pages d'erreur
 mkdir -p /var/www/html /var/www/error
-
-# Modifie les permissions des répertoires
 chmod -R 755 /var/www
+echo 'Hello World!' > /var/www/html/index.html
+echo -e "Ceci n\x27est pas une page" > /var/www/error/404.html
+# the server's configuration
+SERVER_CONFIG=\
+"server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
 
-# Crée un fichier index.html avec du contenu dans le répertoire du site web
-echo 'Bonjour, ceci est la page d\'accueil.' > /var/www/html/index.html
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
 
-# Crée un fichier 404.html pour les erreurs de page non trouvée
-echo 'Désolé, la page que vous cherchez est introuvable.' > /var/www/error/404.html
+	server_name _;
 
-# Configuration du serveur Nginx
-cat <<EOF > /etc/nginx/sites-enabled/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
+	location / {
+		try_files \$uri \$uri/ =404;
+		add_header X-Served-By \$hostname;
+	}
 
-    server_name _;
+	if (\$request_filename ~ redirect_me){
+		rewrite ^ https://sketchfab.com/bluepeno/models permanent;
+	}
 
-    location / {
-        try_files \$uri \$uri/ =404;
-        add_header X-Served-By \$hostname;
-    }
-
-    error_page 404 /404.html;
-    location = /404.html {
-        root /var/www/error/;
-        internal;
-        add_header X-Served-By \$hostname;
-    }
-}
-EOF
-
-# Vérifie si Nginx est en cours d'exécution et le démarre ou le redémarre
-if pgrep nginx >/dev/null; then
-    service nginx restart
+	error_page 404 /404.html;
+	location = /404.html {
+		root /var/www/error/;
+		internal;
+		add_header X-Served-By \$hostname;
+	}
+}"
+bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+	service nginx start
 else
-    service nginx start
+	service nginx restart
 fi
-
