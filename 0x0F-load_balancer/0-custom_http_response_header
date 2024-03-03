@@ -35,7 +35,7 @@ server {
     server_name _;
 
     # Custom header
-    add_header X-Served-By $HOSTNAME;
+    add_header X-Served-By "$HOSTNAME";
 
     location / {
         try_files \$uri \$uri/ =404;
