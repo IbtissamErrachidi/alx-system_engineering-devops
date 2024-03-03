@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Met à jour les paquets disponibles
+apt-get update
+
+# Installe Nginx
+apt-get -y install nginx
+
+# Autorise le trafic HTTP à travers le pare-feu UFW
+ufw allow 'Nginx HTTP'
+
+# Crée les répertoires pour le site web et les pages d'erreur
+mkdir -p /var/www/html /var/www/error
+
+# Modifie les permissions des répertoires
+chmod -R 755 /var/www
+
+# Crée un fichier index.html avec du contenu dans le répertoire du site web
+echo 'Bonjour, ceci est la page d\'accueil.' > /var/www/html/index.html
+
+# Crée un fichier 404.html pour les erreurs de page non trouvée
+echo 'Désolé, la page que vous cherchez est introuvable.' > /var/www/error/404.html
+
+# Configuration du serveur Nginx
+cat <<EOF > /etc/nginx/sites-enabled/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+        add_header X-Served-By \$hostname;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /var/www/error/;
+        internal;
+        add_header X-Served-By \$hostname;
+    }
+}
+EOF
+
+# Vérifie si Nginx est en cours d'exécution et le démarre ou le redémarre
+if pgrep nginx >/dev/null; then
+    service nginx restart
+else
+    service nginx start
+fi
+
