@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# HAproxy installation and configuration
+
+apt-get -y update
+apt-get install -y haproxy
+
+
+server_config=\
+"
+defaults
+	mode http
+	timeout client 50000s
+	timeout connect 5000s
+	timeout server 50000s
+	timeout http-request 5000s
+
+frontend ibtissam.tech-frontend
+	bind *:80
+	default_backend ibtissam.tech-backend
+
+backend ibtissam.tech-backend
+	balance roundrobin
+	server 511737-web-01 54.174.153.120:80 check
+	server 511737-web-02 18.204.14.78:80 check
+"
+
+# shellcheck disable=SC2154
+echo "$server_config" | sudo dd status=none of=/etc/haproxy/haproxy.cfg
+
+# enable haproxy to be started by init script
+echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
+
+if [ "$(pgrep -c haproxy)" -le 0 ]; then
+	sudo service haproxy start
+else
+	sudo service haproxy restart
+fi
