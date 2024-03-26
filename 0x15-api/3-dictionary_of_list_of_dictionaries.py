@@ -24,3 +24,7 @@ def fetch_user_data():
                 "username": user.get("username")
             } for task in tasks]
             all_tasks[user_id] = user_tasks
+            all_users_exist = all(user_id in all_tasks for user_id in range(1, len(users) + 1))
+            json.dump(all_tasks, jsonfile)
+    
+    return all_users_exist
