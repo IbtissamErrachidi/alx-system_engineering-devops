@@ -13,11 +13,14 @@ def fetch_user_data():
 
     users = requests.get(url + "users").json()
     with open("todo_all_employees.json", "w") as jsonfile:
-        json.dump({
-            u.get("id"): [{
-                "username": u.get("username"),
-                "task": t.get("title"),
-                "completed": t.get("completed")
-            } for t in requests.get(url + "todos",
-                                    params={"userId": u.get("id")}).json()]
-            for u in users}, jsonfile)
+        all_tasks = {}
+        for user in users:
+            user_id = user.get("id")
+            tasks = requests.get(url + "todos", params={"userId": user_id}).json()
+            user_tasks = [{
+                "userId": user_id,  # Ajout du champ userId
+                "task": task.get("title"),
+                "completed": task.get("completed"),
+                "username": user.get("username")
+            } for task in tasks]
+            all_tasks[user_id] = user_tasks
