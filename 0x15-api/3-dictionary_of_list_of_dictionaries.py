@@ -15,9 +15,9 @@ def fetch_user_data():
     with open("todo_all_employees.json", "w") as jsonfile:
         json.dump({
             u.get("id"): [{
+                "username": u.get("username"),
                 "task": t.get("title"),
-                "completed": t.get("completed"),
-                "username": u.get("username")
+                "completed": t.get("completed")
             } for t in requests.get(url + "todos",
                                     params={"userId": u.get("id")}).json()]
             for u in users}, jsonfile)
