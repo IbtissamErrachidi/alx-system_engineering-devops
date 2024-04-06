@@ -35,4 +35,3 @@ if __name__ == "__main__":
 
     with open("todo_all_employees.json", "w") as jsonfile:
         json.dump(data_to_export, jsonfile, indent=4)
-
