@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #configures an Nginx to listen on port 80
 
 # remove the default Nginx configuration file
