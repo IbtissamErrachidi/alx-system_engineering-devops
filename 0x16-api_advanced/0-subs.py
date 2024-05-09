@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script that retrieves the number of subscribers for a specified subreddit on Reddit.
+give Reddit subreddit.
 """
 
 import requests

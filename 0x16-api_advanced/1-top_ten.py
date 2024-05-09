@@ -8,17 +8,9 @@ import requests
 
 def top_ten(subreddit):
     """Print the titles of the 10 hottest posts on a given subreddit."""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-
-    headers = {
-        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
-    }
-    params = {
-        "limit": 10
-    }
-
-    response = requests.get(url, headers=headers, params=params,
-                            allow_redirects=False)
+    url = "https://www.reddit.com/r/{}/hot.json?limit10".format(subreddit)
+    headers = {'User-Agent': 'Custom'}
+    response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code == 404:
         print("None")
