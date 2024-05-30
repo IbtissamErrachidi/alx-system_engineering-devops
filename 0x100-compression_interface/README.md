@@ -1,4 +1,4 @@
-ntroduction
+### Introduction
 
 In this innovative approach, we are committed to developing a revolutionary new image compression format called IRM, which surpasses the limitations of traditional compression formats. By combining RLE, Huffman, and LZW compression techniques, the IRM format aims to offer efficient compression while preserving image quality, whether the image is binary, grayscale, or color.
 
