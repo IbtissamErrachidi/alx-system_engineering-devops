@@ -1,11 +1,57 @@
-### Introduction
+# IRM Image Compression Format
 
+## Introduction
 In this innovative approach, we are committed to developing a revolutionary new image compression format called IRM, which surpasses the limitations of traditional compression formats. By combining RLE, Huffman, and LZW compression techniques, the IRM format aims to offer efficient compression while preserving image quality, whether the image is binary, grayscale, or color.
 
 Through practical and experimental simulations using Python, we will test the encoding and decoding processes for each compression method, allowing a thorough evaluation of the IRM format's performance. A user-friendly graphical interface will be developed to facilitate image compression into the .IRM format, featuring tools for measuring compression quality and compression ratio.
 
-### Steps of the IRM Compression Algorithm
+[Link to deployed site](https://ibtissamerrachidi.github.io/)
 
+Authors:
+- [Ibtissam Er Rachidi LinkedIn](https://www.linkedin.com/in/ibtissam-er-rachidi-44a257255/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+
+## Installation
+To install and run this project, follow these steps:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/IbtissamErrachidi/alx-system_engineering-devops/blob/main
+    cd 0x100-compression_interface
+    ```
+2. Install the required libraries:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Usage
+To use the IRM image compression tool, follow these steps:
+
+1. Run the main script:
+    ```bash
+    python interface.py
+    ```
+2. Use the graphical interface to browse and compress images.
+
+## Contributing
+We welcome contributions to the IRM image compression project. Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+## Related Projects
+Here are some related projects that might interest you:
+- [Image Compression Using Huffman Coding](https://github.com/rajatdiptabiswas/image-compression-using-huffman-coding)
+- [JPEG Compression Algorithm Implementation](https://github.com/nitin42/jpeg-compression)
+- [LZW Image Compression](https://github.com/arthurprs/lzw-image-compression)
+- [Image Compression with K-means](https://github.com/bibekkakati/image-compression-using-k-means)
+
+## Screenshot
+![Screenshot](https://github.com/IbtissamErrachidi/IbtissamErrachidi.github.io)
+
+## Steps of the IRM Compression Algorithm
 1. **Preprocessing**: Extract pixel matrices from the RGB image.
 2. **Color Space Conversion**: Convert the image to YCbCr color space for better compression.
 3. **Palette Creation**: Use K-means clustering to create an efficient color palette.
@@ -17,12 +63,10 @@ Through practical and experimental simulations using Python, we will test the en
 9. **Huffman Encoding**: Efficiently represent symbols based on their frequency.
 10. **LZW Encoding**: Final encoding using a code table, resulting in the compressed file with header information for decompression.
 
-### User Interface Development
-
+## User Interface Development
 The user interface is crucial for the IRM format innovation. It should allow smooth and intuitive interaction, providing functionalities to load, view, compress, and save images. Key interface elements include buttons to browse files, display image information, start compression, show the compressed image, and clear displayed information.
 
-### Development Language and Libraries
-
+## Development Language and Libraries
 - **Python**: Main language for its efficiency and extensive standard library.
 - **Matplotlib.pyplot**: For data visualization.
 - **PyQt5**: For creating the graphical interface.
@@ -32,18 +76,16 @@ The user interface is crucial for the IRM format innovation. It should allow smo
 - **os**: For interacting with the operating system.
 - **OpenCV (cv2)**: For image and video processing.
 
-### Development Tools
-
+## Development Tools
 - **Jupyter Notebook**: For interactive data analysis and result communication.
 
-### Interface Features
-
+## Interface Features
 - **"Browse" Button**: Allows selecting an image to compress.
 - **"Information" Button**: Displays details of the selected image.
 - **"Start Compression" Button**: Initiates image compression.
 - **"Show IRM Image File" Button**: Displays the compressed and decompressed image.
 - **"Clear" Button**: Clears displayed information and images.
 
-### Conclusion
-
+## Conclusion
 This project proposes an innovative image compression format, IRM, combining the best practices of current compression techniques to overcome their limitations. The graphical user interface simplifies the use of this format, providing a comprehensive and functional solution for image compression.
+
