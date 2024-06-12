@@ -93,16 +93,16 @@ This project proposes an innovative image compression format, IRM, combining the
 
 
 
-##Project Story
+## Project Story
 Inspiration
 The idea for the IRM image compression format stemmed from a desire to push the boundaries of existing compression techniques. I have always been fascinated by how data can be minimized without losing essential information. This curiosity drove me to explore various compression algorithms and eventually led to the creation of the IRM format. The goal was to develop a format that not only compresses efficiently but also maintains high image quality.
 
-##Challenges
+## Challenges
 During the development process, I encountered several challenges. One of the most significant hurdles was optimizing the combination of RLE, Huffman, and LZW algorithms to work seamlessly together. Each algorithm has its strengths and weaknesses, and balancing them to achieve optimal performance required extensive experimentation and fine-tuning.
 
 Another challenge was creating an intuitive graphical user interface. I wanted the interface to be user-friendly and accessible, even for those who might not be familiar with image compression techniques. Ensuring that the interface was both functional and aesthetically pleasing required careful design and iterative testing.
 
-##Technical Details
+## Technical Details
 The IRM format leverages the strengths of three powerful compression algorithms:
 
 Run-Length Encoding (RLE): Efficiently compresses sequences of repeated values.
@@ -110,7 +110,7 @@ Huffman Encoding: Utilizes variable-length codes based on symbol frequency, ensu
 Lempel-Ziv-Welch (LZW) Encoding: Builds a dictionary of sequences encountered in the data, enabling further compression.
 By converting the image to the YCbCr color space, the IRM format takes advantage of the human eye's varying sensitivity to color and brightness. This allows for more efficient compression without perceptible loss of quality.
 
-##Future Iterations
+## Future Iterations
 Looking ahead, I envision several improvements and additions to the IRM format. These include:
 
 Enhanced Compression Algorithms: Exploring more advanced algorithms to further reduce file sizes.
