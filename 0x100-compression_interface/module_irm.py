@@ -9,6 +9,7 @@ from PIL import Image  # Pour manipuler des images
 import os  # Pour accéder aux fonctionnalités du système d'exploitation
 import cv2  # Pour la manipulation d'images (OpenCV)
 
+
 # Caratéristiques de l'image
 def image_details(path):
     # Ouvrir l'image à partir du chemin donné
