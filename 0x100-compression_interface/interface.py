@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication, QLabel, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QFileDialog, QLineEdit, QMessageBox
 from PyQt5.QtGui import QPixmap 
 from PIL import Image
-import module_irm_new
+import module_irm
 
   
 class MainWindow(QMainWindow):
